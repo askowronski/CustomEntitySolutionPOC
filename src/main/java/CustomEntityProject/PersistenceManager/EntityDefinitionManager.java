@@ -73,6 +73,15 @@ public class EntityDefinitionManager {
         }
     }
 
+    public EntityDefinition getEntityDefinitionByType (
+            String entityType) throws Exception {
+        try {
+            return (EntityDefinition) persistenceManager.getEntityByFilter("entityType",entityType, EntityDefinition.class);
+        } catch(Exception e) {
+            throw e;
+        }
+    }
+
     public List<EntityDefinition> getAllEntityDefinitions() throws Exception {
 
         try {

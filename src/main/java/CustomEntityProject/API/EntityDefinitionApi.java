@@ -75,6 +75,23 @@ public class EntityDefinitionApi {
     }
 
     @CrossOrigin
+    @RequestMapping(method = GET, path = "/GetEntityDefinitionByType")
+    public ResponseEntity<String> getEntityDefinitionByType(
+            @RequestParam(value = "entityType", required = true) String entityType) {
+
+        try {
+            EntityDefinitionManager manager = new EntityDefinitionManager();
+            EntityDefinition def = manager.getEntityDefinitionByType(entityType);
+            if (def == null) {
+                throw new Exception("No Entity Definition found with type "+ entityType);
+            }
+            return ResponseEntity.ok(def.toJson());
+        } catch (Exception e) {
+            return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @CrossOrigin
     @RequestMapping(method = GET, path = "/GetEntityDefinitions")
     public ResponseEntity<String> getAllEntityDefinitions() {
 
