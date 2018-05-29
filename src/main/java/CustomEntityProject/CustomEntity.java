@@ -20,6 +20,8 @@ public class CustomEntity implements DBObjectable, HasValues {
     public List<Value> values;
     @JsonProperty("ownId")
     private Integer ownId;
+    @JsonProperty("entityType")
+    private String entityType;
 
     public CustomEntity() {
     }
@@ -62,5 +64,13 @@ public class CustomEntity implements DBObjectable, HasValues {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getEntityType() {
+        return entityType;
+    }
+
+    public void setEntityType(String entityType) {
+        this.entityType = entityType;
     }
 }
